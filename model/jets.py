@@ -18,6 +18,7 @@ class JETSSynthesizer(nn.Module):
         self.train_config = train_config
         
         self.speaker_emb = None
+        self.generator_config["num_mels"] = self.synthesizer_config["transformer"]["decoder_hidden"]
         self.generator_config["gin_channels"] = self.synthesizer_config["transformer"]["encoder_hidden"]
         if self.synthesizer_config["multi_speaker"]:
             with open(
@@ -36,9 +37,6 @@ class JETSSynthesizer(nn.Module):
         self.variance_adaptor = VarianceAdaptor(
             self.preprocess_config, self.synthesizer_config, self.train_config)
         self.decoder = Decoder(self.synthesizer_config)
-        self.projection = Linear(
-            self.synthesizer_config["transformer"]["decoder_hidden"], 
-            self.generator_config["num_mels"])
         self.generator = Generator(self.generator_config)
 
 
@@ -122,7 +120,6 @@ class JETSSynthesizer(nn.Module):
         else:
             indices = [None, None]
         
-        output = self.projection(output)
         wav = self.generator(output.transpose(1,2), g=g.unsqueeze(-1))
 
         return (
