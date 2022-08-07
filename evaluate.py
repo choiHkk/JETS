@@ -80,6 +80,7 @@ def evaluate(models, step, configs, device, logger=None):
     
     # synthesis one sample
     with torch.no_grad():
+        # segmented output
         for i in range(len(batch)-1):
             try:
                 batch[i] = batch[i][:1]
@@ -88,19 +89,28 @@ def evaluate(models, step, configs, device, logger=None):
             
         output = model(*(batch[:-1]), step=step)
         wav = output[0]
-        # mel = Loss.synthesizer_loss.STFT.mel_spectrogram(wav.squeeze(1))[0].float()
         mel = Loss.synthesizer_loss.get_mel(wav)
         wav_len = output[9][0].item() * hop_size
         attn_h = output[10]
         attn_s = output[11]
+        
+        # total output
+        pairs = to_device_inference(
+            [batch[0][:1], batch[1][:1], batch[2][:1], None], device)
+        output_gen = model(*(pairs), gen=True)
+        wav_gen = output_gen[0]
+        mel_gen = Loss.synthesizer_loss.get_mel(wav_gen)
+        wav_gen_len = output_gen[9][0].item() * hop_size
     
     image_dict = {
         "gen/mel": plot_spectrogram_to_numpy(mel[0].cpu().numpy()), 
+        "gen/mel_gen": plot_spectrogram_to_numpy(mel_gen[0].cpu().numpy()), 
         "all/attn_h": plot_alignment_to_numpy(attn_h[0,0].data.cpu().numpy()), 
         "all/attn_s": plot_alignment_to_numpy(attn_s[0,0].data.cpu().numpy())
     }
     audio_dict = {
-      "gen/audio": wav[0,:,:wav_len]
+      "gen/audio": wav[0,:,:wav_len], 
+      "gen/audio_gen": wav_gen[0,:,:wav_gen_len]
     }
     scalar_dict = {}
     scalar_dict.update(scalars_disc)
