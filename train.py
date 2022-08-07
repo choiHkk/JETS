@@ -162,7 +162,7 @@ def main(args, configs):
                 torch.save(
                     {
                         "model": model.module.state_dict(),
-                        "discriminator": model.module.state_dict(),
+                        "discriminator": discriminator.module.state_dict(),
                         "model_optimizer": model_optimizer.state_dict(),
                         "discriminator_optimizer": discriminator_optimizer.state_dict(),
                         "iteration": epoch, 
