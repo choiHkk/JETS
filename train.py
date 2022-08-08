@@ -98,7 +98,7 @@ def main(args, configs):
             # Discriminator Backward
             discriminator_optimizer.zero_grad()
             loss_disc.backward()
-            grad_norm_discriminator = clip_grad_value_(discriminator.parameters(), None)
+            grad_norm_discriminator = clip_grad_value_(discriminator.parameters(), 1.0)
             discriminator_optimizer.step()
             
             # Generator
@@ -115,7 +115,7 @@ def main(args, configs):
             # Generator Backward
             model_optimizer.zero_grad()
             loss_model.backward()
-            grad_norm_model = clip_grad_value_(model.parameters(), None)
+            grad_norm_model = clip_grad_value_(model.parameters(), 1.0)
             model_optimizer.step()
             
             if step % log_step == 0:
