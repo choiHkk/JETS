@@ -36,10 +36,3 @@ multi_speaker: True
 temperature: 0.0005
 
 max_seq_len: 1000
-
-vocoder:
-  model: "HiFi-GAN" # support 'HiFi-GAN', 'MelGAN'
-  speaker: "universal" # support  'LJSpeech', 'universal'
-  config_path: "/home/choihk/work/FastSpeech2/hifigan/config.json"
-  ljspeech_path: "/home/choihk/work/FastSpeech2/hifigan/generator_LJSpeech.pth.tar"
-  universal_path: "/home/choihk/work/FastSpeech2/hifigan/generator_universal.pth.tar"
