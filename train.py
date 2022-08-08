@@ -8,11 +8,10 @@ from torch.utils.tensorboard import SummaryWriter
 from tqdm import tqdm
 
 from utils.model import get_model, get_param_num
-from utils.tools import to_device, log, clip_grad_value_
+from utils.tools import to_device, log, clip_grad_value_, AttrDict
 from model import JETSLoss
 from data_utils import AudioTextDataset, AudioTextCollate, DataLoader
 from evaluate import evaluate
-from model.hifigan.env import AttrDict
 import json
 import random
 random.seed(1234)

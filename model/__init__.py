@@ -1,2 +1,2 @@
-from .jets import JETSSynthesizer, MultiScaleDiscriminator
+from .jets import JETSSynthesizer, MultiPeriodDiscriminator
 from .loss import JETSLoss

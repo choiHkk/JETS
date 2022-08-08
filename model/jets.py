@@ -1,6 +1,5 @@
+from .modules import VarianceAdaptor, Linear, MultiPeriodDiscriminator, Generator
 from utils.tools import get_mask_from_lengths, partial
-from model.hifigan.models import Generator, MultiScaleDiscriminator
-from .modules import VarianceAdaptor, Linear
 from transformer import Encoder, Decoder
 import torch.nn as nn
 import torch
