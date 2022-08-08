@@ -21,7 +21,7 @@
 2. `cd /home/work/JETS`
 5. `ln -s /home/work/JETS/data/dataset/kss`
 6. `python preprocess.py ./config/kss/preprocess.yaml`
-7. `python train.py -p ./config/kss/preprocess.yaml -s ./config/kss/model.yaml -g ./model/hifigan/config_v1.json -t ./config/kss/train.yaml`
+7. `python train.py -p ./config/kss/preprocess.yaml -s ./config/kss/model.yaml -g ./config/kss/config_v1.json -t ./config/kss/train.yaml`
 8. arguments
   * -p : preprocess config path
   * -s : synthesizer config path
