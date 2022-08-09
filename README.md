@@ -5,6 +5,7 @@
 4. GPU, CUDA 종류에 따라 Dockerfile 상단 torch image 수정이 필요할 수도 있습니다.
 5. preprocessing 단계에서는 학습에 필요한 transcript와 stats 정도만 추출하는 과정만 포함되어 있습니다.
 6. 그 외의 다른 preprocessing 과정은 필요하지 않습니다.
+7. End-To-End & Adversarial training 기반이기 때문에 우수한 품질의 오디오를 생성하기 위해선 많은 학습을 필요로 합니다.
 
 ## Dataset
 1. download dataset - https://www.kaggle.com/datasets/bryanpark/korean-single-speaker-speech-dataset
@@ -30,9 +31,11 @@
 9. (OPTIONAL) `tensorboard --logdir=outdir/logdir`
 
 ## Tensorboard losses
+![JETS-tensorboard-losses](https://user-images.githubusercontent.com/69423543/183569233-ef6b9585-2342-4f99-b651-a8a9ba1b8ff2.png)
 
 
 ## Tensorboard Stats
+![JETS-tensorboard-images](https://user-images.githubusercontent.com/69423543/183569223-70b8299d-0444-4997-99fc-16a67adf5ddd.png)
 
 
 ## Reference
