@@ -37,7 +37,7 @@ def get_model(args, configs, device, train=False):
             discriminator.load_state_dict(ckpt["discriminator"])
             model_optimizer.load_state_dict(ckpt["model_optimizer"])
             discriminator_optimizer.load_state_dict(ckpt["discriminator_optimizer"])
-            iteration = checkpoint_dict['iteration']
+            iteration = ckpt['iteration']
         else:
             iteration = 1
             
